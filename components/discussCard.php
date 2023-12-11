@@ -1,4 +1,15 @@
+<?php
 
+// session_start();
+
+$user = "";
+
+
+if(!empty($_SESSION['username'])){
+    $user = $_SESSION['username'];
+}
+
+?>
     <style>
        
         
@@ -58,7 +69,7 @@
                     <div class="discussion-card-header">
                         <div class="user-info d-flex align-items-center">
                             <img src="https://static.vecteezy.com/system/resources/previews/020/168/661/original/pleased-woman-with-earrings-flat-avatar-icon-with-green-dot-editable-default-persona-for-ux-ui-design-profile-character-picture-with-online-status-indicator-color-messaging-app-user-badge-vector.jpg" alt="User Avatar" class="user-avatar">
-                            <div class="user-name ml-2">John Doe</div>
+                            <div class="user-name ml-2"><?php echo $user ? $user : "Guest"; ?></div>
                         </div>
                     </div>
 

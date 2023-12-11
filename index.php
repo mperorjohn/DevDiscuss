@@ -1,8 +1,12 @@
+<?php
+// session_start();
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevDiscuss</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,12 +27,12 @@
     }
 
     
-
+    
     .navbar{
      background: #0F2027;  
      background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
      background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
-     }
+    }
     
     .textWhite{
     color:white !important;
@@ -37,7 +41,7 @@
     .footer {
     background-color: #343a40;
     color: #ffffff;
-    position: fixed;
+    position: ;
     bottom: 0;
     width: 100%;
     /* background-color: #f8f9fa; Set your desired background color */
@@ -71,6 +75,21 @@
 
     .social-icons i {
     }    
+
+    h1, h2 {
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
   </style>
 </head>
 <body>

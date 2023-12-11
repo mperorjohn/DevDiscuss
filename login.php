@@ -1,4 +1,33 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+$header = include_once "./components/header.php";
+
+$message = "";
+
+if (isset($_POST['submit'])) {
+
+
+    $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_SPECIAL_CHARS);
+    $password = $_POST['password'];
+    if($username === "John" && $password === "1111"){
+       $_SESSION['username'] = $username;
+       header("Location: index.php");
+       exit; 
+   } else {
+       $message = "Incorrect Login details";
+   }
+}
+
+
+
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +66,7 @@
     .footer {
     background-color: #343a40;
     color: #ffffff;
-    position: ;
+    position:fixed ;
     bottom: 0;
     width: 100%;
     /* background-color: #f8f9fa; Set your desired background color */
@@ -74,21 +103,39 @@
   </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <?php include "./components/header.php"; ?>
+    <!-- Include your navbar here or create a new one for this page -->
 
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center">Login</h2>
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
 
+                    <button type="submit" name="submit" class="btn btn-primary form-control">Login</button>
+                    <?php if (!empty($message)): ?>
+                            <div class="alert alert-danger mt-3" role="alert">
+                    <?php echo $message; ?>
+                            </div>
+                         <?php endif; ?>
+                </form>
 
+                <div class="mt-3 text-center mt-5">
+                    <p>New here? <a href="signup.php">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-    <h1>Welcome to Designer's page</h1>
-    
-    
-    
-   
-    <!-- Footer -->
+  
     <?php   include "./components/footer.php" ;?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -97,6 +144,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 </html>
-           
-            
-   

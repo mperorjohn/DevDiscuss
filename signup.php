@@ -1,4 +1,7 @@
-
+<?php
+// Include header
+$header = include_once "./components/header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,20 +77,45 @@
   </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <?php include "./components/header.php"; ?>
+    <!-- Include your navbar here or create a new one for this page -->
 
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center">Sign Up</h2>
+                <form action="process_signup.php" method="post">
+                    <!-- Add your form fields here -->
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
 
+                    <button type="submit" class="btn btn-primary form-control">Sign Up</button>
+                </form>
 
+                <div class="mt-3 text-center">
+                    <p>Already have an account? <a href="login.php">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h1>Welcome to Designer's page</h1>
-    
-    
-    
-   
+  
     <!-- Footer -->
     <?php   include "./components/footer.php" ;?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

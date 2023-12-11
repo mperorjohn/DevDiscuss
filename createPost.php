@@ -1,4 +1,33 @@
+<?php
 
+$header = include_once "./components/header.php";
+
+$user = "";
+
+if(!empty($_SESSION['username'])){
+  $user = $_SESSION['username'];
+}
+
+if(isset($_POST['submit'])){
+  
+
+ 
+  $title = $_POST['title'];
+  $content = $_POST['content'];
+
+
+  if($user){
+    echo "<h1>Post submitted successfully". $title . $content . 'by:'. $user ."</h1>";
+    
+  }else{
+    header("Location: login.php");
+  }
+
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,21 +43,42 @@
   <style>
     /* Add your custom styles here */
     body {
-        font-family: 'Arial', sans-serif;
-    } 
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
 
 
+    }
+
+    
+
+    .navbar{
+     background: #0F2027;  
+     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
+     background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+     }
+    
+    .textWhite{
+    color:white !important;
+    }
+ 
     .footer {
     background-color: #343a40;
     color: #ffffff;
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 10px 0; 
+    /* background-color: #f8f9fa; Set your desired background color */
+    padding: 10px 0; /* Adjust the padding as needed */
     padding: 20px 0;
     text-align: center;
+        /* position: relative; */
+      }
+    .container {
+      max-width: 1200px; /* Set a maximum width for the container if needed */
+      margin: 0 auto; /* Center the container */
     }
-  
 
     .social-icons {
       text-align: right;
@@ -53,29 +103,31 @@
   </style>
 </head>
 <body>
-<!-- Header -->
-<?php include "./components/header.php" ;?>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail
-                    1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">
-                        We'll never share your email with anyone else.</small>
-                        </div>
-            </form>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="text-center">Create your own discussion</h2>
+                <form action="" method="post">
+                    <!-- Add your form fields here -->
+                    <div class="form-group">
+                        <label for="postTitle">Title:</label>
+                        <input type="text" class="form-control" id="postTitle" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postContent">Content:</label>
+                        <textarea class="form-control" id="postContent" name="content" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" name="submit" class="btn btn-primary form-control">Create Post</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
-<!-- Footer -->
 
 
-<?php include "./components/footer.php" ;?>
+    <?php   include "./components/footer.php" ;?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
