@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 
 ?>
@@ -39,9 +39,11 @@
     }
  
     .footer {
-    background-color: #343a40;
+    background: #0F2027;  
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     color: #ffffff;
-    position: ;
+    position:fixed ;
     bottom: 0;
     width: 100%;
     /* background-color: #f8f9fa; Set your desired background color */
@@ -94,7 +96,7 @@
 </head>
 <body>
     <!-- HEADER -->
-    <?php include "./components/header.php"; ?>
+    <?php include("./components/header.php"); ?>
 
 
 

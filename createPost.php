@@ -1,6 +1,6 @@
 <?php
 
-$header = include_once "./components/header.php";
+session_start();
 
 $user = "";
 
@@ -11,26 +11,26 @@ if(!empty($_SESSION['username'])){
 if(isset($_POST['submit'])){
   
 
- 
+  
   $title = $_POST['title'];
   $content = $_POST['content'];
 
 
   if($user){
-    echo "<h1>Post submitted successfully". $title . $content . 'by:'. $user ."</h1>";
+    header("Location: index.php");
     
   }else{
-    header("Location: login.php");
+    header('Location: login.php');
   }
-
-
+  
+  
 }
 
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevDiscuss</title>
@@ -40,44 +40,45 @@ if(isset($_POST['submit'])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Livvic:wght@300&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <style>
-    /* Add your custom styles here */
-    body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-
-
+    <style>
+      /* Add your custom styles here */
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        
+        
     }
 
     
-
+    
     .navbar{
-     background: #0F2027;  
+      background: #0F2027;  
      background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
      background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
      }
-    
-    .textWhite{
-    color:white !important;
-    }
+     
+     .textWhite{
+       color:white !important;
+      }
  
     .footer {
-    background-color: #343a40;
+    background: #0F2027;  
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     color: #ffffff;
     position: fixed;
     bottom: 0;
     width: 100%;
-    /* background-color: #f8f9fa; Set your desired background color */
-    padding: 10px 0; /* Adjust the padding as needed */
+    padding: 10px 0; 
     padding: 20px 0;
     text-align: center;
-        /* position: relative; */
-      }
-    .container {
-      max-width: 1200px; /* Set a maximum width for the container if needed */
-      margin: 0 auto; /* Center the container */
+   
+  }
+  .container {
+      max-width: 1200px; 
+      margin: 0 auto; 
     }
 
     .social-icons {
@@ -93,18 +94,19 @@ if(isset($_POST['submit'])){
       color: #007bff; 
     }
 
-   .social-icons i:hover {
-        color: #28a745;
+    .social-icons i:hover {
+      color: #28a745;
     }
 
-
+    
     .social-icons i {
     }    
-  </style>
+    </style>
 </head>
 <body>
-
-    <div class="container mt-5">
+  <?php include "./components/header.php"; ?>
+  
+  <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <h2 class="text-center">Create your own discussion</h2>
@@ -133,5 +135,5 @@ if(isset($_POST['submit'])){
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-</body>
-</html>
+<!-- </body>
+</html> -->

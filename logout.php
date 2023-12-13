@@ -9,7 +9,7 @@ session_unset();
 session_destroy();
 
 echo "Before redirection"; // Add this line
-header("Location: index.php");
+header("Location: login.php");
 exit;
 
 ?>
