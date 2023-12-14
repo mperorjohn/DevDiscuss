@@ -101,6 +101,13 @@ if(isset($_POST['submit'])){
     
     .social-icons i {
     }    
+    .mybtn{
+            background: #0F2027;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+            color:white;
+
+        }
     </style>
 </head>
 <body>
@@ -122,7 +129,7 @@ if(isset($_POST['submit'])){
                         <textarea class="form-control" id="postContent" name="content" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit" name="submit" class="btn btn-primary form-control">Create Post</button>
+                    <button type="submit" name="submit" class="btn mybtn form-control">Create Post</button>
                 </form>
             </div>
         </div>

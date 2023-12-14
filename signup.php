@@ -40,7 +40,7 @@ $header = include_once "./components/header.php";
     .footer {
     background-color: #343a40;
     color: #ffffff;
-    position: ;
+    position:fixed ;
     bottom: 0;
     width: 100%;
     /* background-color: #f8f9fa; Set your desired background color */
@@ -74,6 +74,13 @@ $header = include_once "./components/header.php";
 
     .social-icons i {
     }    
+    .mybtn{
+            background: #0F2027;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+            color:white;
+
+        }
   </style>
 </head>
 <body>
@@ -105,7 +112,7 @@ $header = include_once "./components/header.php";
                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary form-control">Sign Up</button>
+                    <button type="submit" class="btn mybtn form-control">Sign Up</button>
                 </form>
 
                 <div class="mt-3 text-center">

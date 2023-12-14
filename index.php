@@ -43,7 +43,7 @@ session_start();
     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     color: #ffffff;
-    position:fixed ;
+    position: ;
     bottom: 0;
     width: 100%;
     /* background-color: #f8f9fa; Set your desired background color */
@@ -115,6 +115,14 @@ session_start();
             </div>
     </div>
     <!-- Main content -->
+    
+    
+    <?php include "./components/discussCard.php" ?>
+
+
+    <?php include "./components/discussCard.php" ?>
+
+
     <?php include "./components/discussCard.php" ?>
 
 

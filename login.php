@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
         header('Location: index.php');
         exit; 
     } else {
-        $message = "Incorrect Login details";
+        $message = "Username or Password Incorrect";
     }
 }
 ?>
@@ -92,8 +92,8 @@ if (isset($_POST['submit'])) {
     .social-icons i {
     }    
     .mybtn{
-            background: #0F2027;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+            background: #0F2027;  
+            background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
             background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
             color:white;
 
@@ -101,10 +101,10 @@ if (isset($_POST['submit'])) {
     </style>
 </head>
 <body>
-  <!-- Include your navbar here or create a new one for this page -->
+  <!-- HEADER -->
   <?php include "./components/header.php";?>
   
-
+<!-- FORM SECTION -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 offset-md-3">
@@ -120,15 +120,20 @@ if (isset($_POST['submit'])) {
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
 
-                    <button type="submit" name="submit" class="btn mybtn  form-control">Login</button>
+                    <button type="submit" name="submit" class="btn mybtn  form-control">Login <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+</svg></span></button>
                     <?php if (!empty($message)): ?>
                             <div class="alert alert-danger mt-3" role="alert">
                     <?php echo $message; ?>
                             </div>
                          <?php endif; ?>
                 </form>
-
-                <div class="mt-3 text-center mt-5">
+                <div class="mt-3 text-center mt-2 mb-2">
+                    <p><a href="signup.php" class="text-underline ">Forgot Password ?</a></p>
+                </div>
+                <div class="mt-3 text-center mt-2">
                     <p>New here? <a href="signup.php">Sign up</a></p>
                 </div>
             </div>
