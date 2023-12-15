@@ -2,7 +2,7 @@
 
 // session_start();
 
-require('./db/config.php');
+// require('./db/config.php');
 
 
 $user = "";
