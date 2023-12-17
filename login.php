@@ -1,21 +1,51 @@
 <?php
 session_start();
 
+include('./db/config.php');
+
 $message = "";
 
 if (isset($_POST['submit'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
     $password = $_POST['password'];
 
-    if ($username === "John" && $password === "1111") {
-        $_SESSION['username'] = $username;
-        header('Location: index.php');
-        exit; 
+    // Create a prepared statement
+    $stmt = $conn->prepare("SELECT userName, password_hash FROM users WHERE userName = ?");
+
+    if ($stmt) {
+        // Bind the parameter
+        $stmt->bind_param("s", $username);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Bind the result variables
+            $stmt->bind_result($dbUsername, $dbPasswordHash);
+
+            // Fetch the result
+            $stmt->fetch();
+
+            // Close the statement
+            $stmt->close();
+
+            // Verify the password
+            if ($dbUsername && password_verify($password, $dbPasswordHash)) {
+                // Password is correct, set session variable and redirect
+                $_SESSION['username'] = $username;
+                header('Location: index.php');
+                exit;
+            } else {
+                // Invalid credentials
+                $message = "Username or Password Incorrect";
+            }
+        } else {
+            $message = "Error executing query";
+        }
     } else {
-        $message = "Username or Password Incorrect";
+        $message = "Error preparing statement";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
