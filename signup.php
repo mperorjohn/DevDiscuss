@@ -10,10 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     $createPassword = $_POST['password'];  
     $confirmPassword = $_POST['confirmPassword'];  
 
-    // Assuming $mysqli is already defined in the included header
     if ($conn) {
       if ($createPassword != $confirmPassword) {
-        // echo "<script>alert('Passwords do not match!')</script>";
         $message = "Password not match";
     } else {
         // Hash the password
@@ -36,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
             header('Location: index.php');
         }
     
-        // Close the statement
         $stmt->close();
     }
     
@@ -88,15 +85,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     position: ;
     bottom: 0;
     width: 100%;
-    /* background-color: #f8f9fa; Set your desired background color */
-    padding: 10px 0; /* Adjust the padding as needed */
+    padding: 10px 0; 
     padding: 20px 0;
     text-align: center;
-        /* position: relative; */
+      
       }
     .container {
-      max-width: 1200px; /* Set a maximum width for the container if needed */
-      margin: 0 auto; /* Center the container */
+      max-width: 1200px; 
+      margin: 0 auto; 
     }
     
     .social-icons {
