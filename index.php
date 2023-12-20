@@ -23,7 +23,7 @@ session_start();
     body {
     min-height: 100vh;
     margin: 0;
-    padding: 0;
+    padding:0;
     display: flex;
     flex-direction: column;
     font-family: 'Arial', sans-serif;
@@ -35,6 +35,7 @@ session_start();
      background: #0F2027;  
      background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
      background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+     
     }
     
     .textWhite{
@@ -128,14 +129,6 @@ session_start();
 
     <?php include "./components/discussCard.php" ?>
 
-
-
-
-    
-    
-    
-    
-    
     <!-- Footer -->
     <?php   include "./components/footer.php" ;?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
