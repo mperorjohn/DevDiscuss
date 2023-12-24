@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
             echo "Error: " . $stmt->error;
         } else {
             // Registration successful
-            header('Location: index.php');
+            header('Location: login.php');
         }
     
         $stmt->close();

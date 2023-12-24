@@ -2,32 +2,44 @@
 
 session_start();
 
+include('./db/config.php');
+
 $user = "";
 
-if(!empty($_SESSION['username'])){
-  $user = $_SESSION['username'];
+if (!empty($_SESSION['username'])) {
+    $user = $_SESSION['username'];
 }
 
-if(isset($_POST['submit'])){
-  
+if (isset($_POST['submit'])) {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
 
-  
-  $title = $_POST['title'];
-  $content = $_POST['content'];
+    if ($user) {
+       
+        $sql = "INSERT INTO posts (Title, Content, User) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
 
+      
+        $stmt->bind_param("sss", $title, $content, $user);
 
-  if($user){
-    header("Location: index.php");
-    
-  }else{
-    header('Location: login.php');
-  }
-  
-  
+        
+        $result = $stmt->execute();
+
+        if ($result) {
+            header("Location: index.php");
+        } else {
+           
+            echo "Error: " . $stmt->error;
+        }
+
+        
+        $stmt->close();
+    } else {
+        header('Location: login.php');
+    }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -68,7 +80,7 @@ if(isset($_POST['submit'])){
     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     color: #ffffff;
-    position: fixed;
+    position: ;
     bottom: 0;
     width: 100%;
     padding: 10px 0; 
@@ -126,7 +138,7 @@ if(isset($_POST['submit'])){
 
                     <div class="form-group">
                         <label for="postContent">Content:</label>
-                        <textarea class="form-control" id="postContent" name="content" rows="4" required></textarea>
+                        <textarea class="form-control" id="postContent" name="content" rows="4" col="10" required></textarea>
                     </div>
 
                     <button type="submit" name="submit" class="btn mybtn form-control">Create Post</button>
@@ -135,8 +147,10 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 
+<div class="mt-5">
 
-    <?php   include "./components/footer.php" ;?>
+  <?php   include "./components/footer.php" ;?>
+</div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

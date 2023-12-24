@@ -1,22 +1,20 @@
 <?php
 
 
+include_once('./db/config.php');
+
+$result = null;
+
+if($conn){
+  $sql = "SELECT * FROM `forums`";
+  
+  $result = $conn->query($sql);
+
+
+}
 
 
 $user = "";
-
-
-$technologyRoles = [
-  "Software Developer",
-  "Network Engineer",
-  "Systems Engineer",
-  "Data Scientist",
-  "Cybersecurity Analyst",
-  "DevOps Engineer",
-  "Cloud Solutions Architect",
-];
-
-
 
 
 ?>
@@ -28,6 +26,7 @@ $technologyRoles = [
      background: #0F2027;  
      background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
      background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+     font-family: 'Roboto', sans-serif;
      }
     
     .textWhite{
@@ -75,9 +74,12 @@ $technologyRoles = [
 </svg>Join Forum
           </a>
           <ul class="dropdown-menu">
-            <?php for ($i = 0; $i < count($technologyRoles); $i++): ?>
-            <li><a class="dropdown-item" href="developer.php"><?php echo $technologyRoles[$i]; ?></a></li>
-            <?php endfor; ?>
+            <?php if($result): ?>
+              <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <li><a class="dropdown-item" href="developer.php"><?php echo $row['Forum'] ?></a></li>
+              <?php endwhile; ?>
+            <?php endif; ?>
+           
 
           </ul>
         </li>
