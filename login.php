@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
                 exit;
             } else {
                 // Invalid credentials
-                $message = "Username or Password Incorrect";
+                $message = "Username or Password Incorrect"; 
             }
         } else {
             $message = "Error executing query";
@@ -43,6 +43,10 @@ if (isset($_POST['submit'])) {
     } else {
         $message = "Error preparing statement";
     }
+
+
+
+   
 }
 ?>
 
@@ -128,6 +132,20 @@ if (isset($_POST['submit'])) {
             color:white;
 
         }
+
+        .outline-is-none:focus {
+      outline: none !important;
+    }
+
+  
+    .hover-is-none:hover {
+      background-color: transparent !important;
+    }
+
+    .hover-is-none:focus {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
     </style>
 </head>
 <body>
@@ -142,12 +160,12 @@ if (isset($_POST['submit'])) {
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+                        <input type="text" class="form-control hover-is-none outline-is-none" id="username" name="username" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <input type="password" class="form-control hover-is-none outline-is-none" id="password" name="password" required>
                     </div>
 
                     <button type="submit" name="submit" class="btn mybtn  form-control">Login <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">

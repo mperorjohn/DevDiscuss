@@ -1,9 +1,12 @@
 <?php
 
-// include('./db/config.php');
+include('./db/config.php');
 
 session_start();
 
+if(!isset($_SESSION['username'])){
+  header("Location: login.php");
+}
 
 
 ?>
@@ -34,6 +37,8 @@ session_start();
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif !important;
+    /* font-family: 'Fira Code', monospace !important; */
+    /* font-family: 'JetBrains Mono', monospace !important; */
 }
 
 
