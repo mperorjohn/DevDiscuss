@@ -1,8 +1,12 @@
 <?php
 
-// include('./db/config.php');
+include('./db/config.php');
 
 session_start();
+
+if(!isset($_SESSION['username'])){
+  header("Location: login.php");
+}
 
 
 ?>
@@ -18,16 +22,25 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Livvic:wght@300&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     /* Add your custom styles here */
     body {
+    background-image:url("./images/27436.png");
+    background-size: cover;
+    box-sizing:border-box;
+    background-position:center;
+    background-repeat:no-repeat;
     min-height: 100vh;
     margin: 0;
-    padding:0;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Arial', sans-serif;
-    }
+    padding: 0;
+    font-family: 'Roboto', sans-serif !important;
+    /* font-family: 'Fira Code', monospace !important; */
+    /* font-family: 'JetBrains Mono', monospace !important; */
+}
+
 
     
     
@@ -35,6 +48,7 @@ session_start();
      background: #0F2027;  
      background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
      background: linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+     font-family: 'Roboto', sans-serif;
      
     }
     
@@ -50,15 +64,14 @@ session_start();
     position: ;
     bottom: 0;
     width: 100%;
-    /* background-color: #f8f9fa; Set your desired background color */
-    padding: 10px 0; /* Adjust the padding as needed */
+    padding: 10px 0; 
     padding: 20px 0;
     text-align: center;
         /* position: relative; */
-      }
+    }
     .container {
-      max-width: 1200px; /* Set a maximum width for the container if needed */
-      margin: 0 auto; /* Center the container */
+      max-width: 1200px; 
+      margin: 0 auto; 
     }
 
     .social-icons {
@@ -105,7 +118,7 @@ session_start();
 
 
 
-    <div>
+    <!-- <div>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -117,17 +130,15 @@ session_start();
             </div>
             </div>
             </div>
-    </div>
+    </div> -->
     <!-- Main content -->
     
     
     <?php include "./components/discussCard.php" ?>
 
 
-    <?php include "./components/discussCard.php" ?>
 
 
-    <?php include "./components/discussCard.php" ?>
 
     <!-- Footer -->
     <?php   include "./components/footer.php" ;?>

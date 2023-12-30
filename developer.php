@@ -78,6 +78,10 @@
     <?php include_once "./components/header.php"; ?>
 
 
+    <?php include "./components/discussCard.php" ?>
+
+
+
 
 
 

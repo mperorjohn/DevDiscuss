@@ -2,32 +2,44 @@
 
 session_start();
 
+include('./db/config.php');
+
 $user = "";
 
-if(!empty($_SESSION['username'])){
-  $user = $_SESSION['username'];
+if (!empty($_SESSION['username'])) {
+    $user = $_SESSION['username'];
 }
 
-if(isset($_POST['submit'])){
-  
+if (isset($_POST['submit'])) {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
 
-  
-  $title = $_POST['title'];
-  $content = $_POST['content'];
+    if ($user) {
+       
+        $sql = "INSERT INTO posts (Title, Content, User) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
 
+      
+        $stmt->bind_param("sss", $title, $content, $user);
 
-  if($user){
-    header("Location: index.php");
-    
-  }else{
-    header('Location: login.php');
-  }
-  
-  
+        
+        $result = $stmt->execute();
+
+        if ($result) {
+            header("Location: index.php");
+        } else {
+           
+            echo "Error: " . $stmt->error;
+        }
+
+        
+        $stmt->close();
+    } else {
+        header('Location: login.php');
+    }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,6 +63,10 @@ if(isset($_POST['submit'])){
         
     }
 
+    .encourage{
+      font-family: 'Roboto', sans-serif !important;
+    }
+
     
     
     .navbar{
@@ -68,13 +84,20 @@ if(isset($_POST['submit'])){
     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
     color: #ffffff;
-    position: fixed;
+    position: ;
     bottom: 0;
     width: 100%;
     padding: 10px 0; 
     padding: 20px 0;
     text-align: center;
    
+  }
+  .createPost{
+    background: #0F2027;  
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    color: #ffffff;
+
   }
   .container {
       max-width: 1200px; 
@@ -108,6 +131,21 @@ if(isset($_POST['submit'])){
             color:white;
 
         }
+
+      
+    .outline-is-none:focus {
+      outline: none !important;
+    }
+
+  
+    .hover-is-none:hover {
+      background-color: transparent !important;
+    }
+
+    .hover-is-none:focus {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
     </style>
 </head>
 <body>
@@ -116,17 +154,42 @@ if(isset($_POST['submit'])){
   <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h2 class="text-center">Create your own discussion</h2>
+                <h2 class="text-center text-white  rounded-2 shadow-lg createPost mb-2 bg-secondary p-2 ">&lt;/Create Post&gt;</h2>
+                <p class="text-center encourage">The tech community thrives on diverse voices, and yours is a valuable addition.</p>
+                <!-- <hr> -->
                 <form action="" method="post">
                     <!-- Add your form fields here -->
-                    <div class="form-group">
-                        <label for="postTitle">Title:</label>
-                        <input type="text" class="form-control" id="postTitle" name="title" required>
-                    </div>
+                    <div class="row mt-2">
+                          <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="postTitle">Title<span class="text-danger fw-bold">*</span></label>
+                                    <input type="text" class="form-control hover-is-none outline-is-none" title="Create Post Title" id="postTitle" name="title" required>
+                                </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group ">
+                                  <label for="postTitle">Post Description:</label>
+                                  <input type="text" class="form-control hover-is-none outline-is-none "  id="postTitle" title="Add Post Description" name="title" >
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="postContent">Content:</label>
-                        <textarea class="form-control" id="postContent" name="content" rows="4" required></textarea>
+                    </div>
+                    <!-- End of Title and Description -->
+                   <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label for="image">File</label>
+                          <input type="file" class="form-control hover-is-none outline-is-none "  title="Add Image to Post" name="image" id="image" class="form-control" >
+                        </div>
+                        <div class="col-md-6">
+                            <label for="#tag">Include #tag</label>
+                           <input type="text" class="form-control hover-is-none outline-is-none " placeholder="#tag"  title="Inclued #tag to boost Impression" name="image" id="image" class="form-control" >
+
+                        </div>
+                   </div>
+<!--                  TEXTAREA      -->
+                    <div class="form-group mt-2">
+                        <label for="postContent">Content<span class="text-danger fw-bold">*</span></label>
+                        <textarea class="form-control hover-is-none outline-is-none" id="postContent "  title="Write your blog Post" name="content" rows="4" col="10" required></textarea>
                     </div>
 
                     <button type="submit" name="submit" class="btn mybtn form-control">Create Post</button>
@@ -135,8 +198,10 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 
+<div class="mt-5">
 
-    <?php   include "./components/footer.php" ;?>
+  <?php   include "./components/footer.php" ;?>
+</div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
